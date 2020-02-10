@@ -19,6 +19,15 @@ topicsRouter
 .post(jsonParser, (req, res, next) => {
     const { topic, topic_url, note } = req.body
     const newTopic = { topic, topic_url, note }
+
+    for (const [key, value] of Object.entries(newTopic)) {
+           if (value == null) {
+             return res.status(400).json({
+               error: { message: `Missing '${key}' in request body` }
+             })
+           }
+         }
+
     TopicsService.insertTopic(
       req.app.get('db'),
       newTopic
