@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors');
 const helmet = require('helmet')
 const morgan = require('morgan')
-
+const topicsRouter= require('./topics/topics-router')
 const app = express()
 const { NODE_ENV } = require('./config')
 const morganOption = (NODE_ENV=== 'production')
@@ -12,6 +12,7 @@ const morganOption = (NODE_ENV=== 'production')
 app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
+app.use('/topics', topicsRouter)
 
 app.get('/',(req,res)=>{
 res.status(200).send("Hello World.")
