@@ -2,6 +2,7 @@ const express = require('express')
 const TopicsService = require('../topics-service')
 const xss= require('xss')
 
+const {requireAuth} = require('../middleware/jwt-auth')
 const topicsRouter = express.Router()
 const jsonParser = express.json()
 
