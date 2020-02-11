@@ -1,5 +1,5 @@
 const express = require('express')
-const TopicsService = require('./articles-service')
+const TopicsService = require('../topics-service')
 const xss= require('xss')
 
 const topicsRouter = express.Router()
@@ -7,7 +7,7 @@ const jsonParser = express.json()
 
 const serializeTopic = topic => ({
   id: topic.id,
-  topic:xss(topic.topic_name),
+  topic_name:xss(topic.topic_name),
   topic_url: xss(topic.topic_url),
   note: xss(topic.note),
   date_added: topic.date_added
@@ -24,8 +24,8 @@ topicsRouter
     .catch(next)
 })
 .post(jsonParser, (req, res, next) => {
-    const { topic, topic_url, note } = req.body
-    const newTopic = { topic, topic_url, note }
+    const { topic_name, topic_url } = req.body
+    const newTopic = { topic_name, topic_url}
 
     for (const [key, value] of Object.entries(newTopic)) {
            if (value == null) {
@@ -47,7 +47,7 @@ topicsRouter
       })
       .catch(next)
   })
-  articlesRouter
+  topicsRouter
   .route('/:topic_id')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db')

@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors');
 const helmet = require('helmet')
 const morgan = require('morgan')
-const topicsRouter= require('./topics/topics-router')
+const topicsRouter= require('./topics/topics-router');
 const app = express()
 const { NODE_ENV } = require('./config')
 const morganOption = (NODE_ENV=== 'production')
