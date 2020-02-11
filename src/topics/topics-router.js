@@ -1,18 +1,25 @@
 const express = require('express')
 const TopicsService = require('./articles-service')
+const xss= require('xss')
 
 const topicsRouter = express.Router()
 const jsonParser = express.json()
 
+const serializeTopic = topic => ({
+  id: topic.id,
+  topic:xss(topic.topic_name),
+  topic_url: xss(topic.topic_url),
+  note: xss(topic.note),
+  date_added: topic.date_added
+})
 
 topicsRouter
 .route('/')
 .get((req,res,next)=>{
-    TopicsService.getAllTopics(
-        req.app.get('db')
-    )
+  const knexInstance=  req.app.get('db')  
+  TopicsService.getAllTopics(knexInstance)
     .then(topics=>{
-        res.json(topics)
+        res.json(topics.map(serializeTopic))
     })
     .catch(next)
 })
@@ -36,7 +43,7 @@ topicsRouter
         res
           .status(201)
           .location(`/topics/${topic.id}`)
-          .json(article)
+          .json(serializeTopic(topic))
       })
       .catch(next)
   })
@@ -51,7 +58,7 @@ topicsRouter
             error: { message: `This topic does not exist.` }
           })
         }
-        res.json(topic)
+        res.json(serializeTopic(topic))
       })
       .catch(next)
   })
