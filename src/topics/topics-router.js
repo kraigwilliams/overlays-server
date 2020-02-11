@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const TopicsService = require('../topics-service')
 const xss= require('xss')
 
@@ -43,7 +44,8 @@ topicsRouter
       .then(topic => {
         res
           .status(201)
-          .location(`/topics/${topic.id}`)
+          .location(path.posix.join(req.originalUrl, `/${article.id}`))
+          //.location(`/topics/${topic.id}`)
           .json(serializeTopic(topic))
       })
       .catch(next)
