@@ -44,6 +44,9 @@ const UsersService = {
       date_created: new Date(user.date_created),
     }
   },
+  getUserName(knex,id){
+    return knex.from('overlays_users').select("*").where('user_name', user_name).first()
+}
 }
 
 module.exports = UsersService
