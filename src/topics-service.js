@@ -1,6 +1,8 @@
 const TopicsService={
-    getAllTopics(knex){
-    return knex.select('*').from('overlays_topics')
+
+    getAllTopics(knex,id){
+    return knex.from('overlays_topics').select('*')
+    .where('user_id',id)
 }
 ,
 
@@ -11,7 +13,7 @@ return knex
 .returning("*")
 },
 getById(knex,id){
-    return knex.from('overlays_topics').select("*").where('id', id).first()
+    return knex.from('overlays_topics').select('*').where('id', id)
 },
 
 deleteTopic(knex,id){

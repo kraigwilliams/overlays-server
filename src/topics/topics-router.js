@@ -8,18 +8,23 @@ const topicsRouter = express.Router()
 const jsonParser = express.json()
 
 const serializeTopic = topic => ({
-  id: topic.id,
+  id: Number(topic.id),
   topic_name:xss(topic.topic_name),
   topic_url: xss(topic.topic_url),
   note: xss(topic.note),
-  date_added: topic.date_added
+  date_added: topic.date_added,
+ // user_id:req.user.id
 })
 
+
 topicsRouter
+.use(requireAuth)
 .route('/')
 .get((req,res,next)=>{
   const knexInstance=  req.app.get('db')  
-  TopicsService.getAllTopics(knexInstance)
+  const user=req.user.id
+  //console.log("user",user)
+  TopicsService.getAllTopics(knexInstance,Number(req.user.id))
     .then(topics=>{
         res.json(topics.map(serializeTopic))
     })
@@ -36,6 +41,7 @@ topicsRouter
              })
            }
          }
+         newTopic.user_id=req.user.id
 
     TopicsService.insertTopic(
       req.app.get('db'),

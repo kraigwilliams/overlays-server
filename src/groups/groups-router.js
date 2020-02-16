@@ -43,7 +43,7 @@ groupsRouter
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${group.id}`))
           //.location(`/topics/${topic.id}`)
-          .json(serializeTopic(group))
+          .json(serializeGroup(group))
       })
       .catch(next)
   })
