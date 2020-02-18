@@ -13,7 +13,8 @@ const serializeNote = note => ({
 from_topic:note.from_topic,
   note_contents: xss(note.note_contents),             
  // date_added: topic.date_added,
- note_owner:note.note_owner
+ note_owner:note.note_owner,
+ topic_name:xss(note.topic_name)
 })
 
 
@@ -77,7 +78,8 @@ notesRouter
           })
         }
         console.log("this is note",note)
-        res.json(note)
+
+        res.json(note.map(serializeNote))
       })
       .catch(next)
   })

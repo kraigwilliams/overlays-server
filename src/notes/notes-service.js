@@ -4,6 +4,8 @@ const NotesService={
     return knex.from('user_notes').select('*')
    // .where('user_id',user_id)
     .where('from_topic',topicId)
+    .join('overlays_topics','user_notes.from_topic','=','overlays_topics.id')
+    
 }
 ,
 
@@ -19,16 +21,22 @@ getById(knex,id){
     return knex.from('overlays_topics').select('*').where('id', id)
 },
 
-deleteTopic(knex,id){
+deleteNote(knex,id){
     return knex('user_notes')
     .where({id})
     .delete()
 },
-updateTopic(knex,id, NoteFields){
+updateNote(knex,id, newNoteFields){
     return knex('user_notes')
     .where({id})
-    .update(newTopicFields)
-}
+    .update(newNoteFields)
+},
+// getNoteTopic(knex){
+// return knex('user_notes')
+// .join('overlays_topics','user_notes.from_topic','=','overlays_topics.id')
+// .select('topic_name')
+// }
+
 }
 
 module.exports= NotesService;
