@@ -3,6 +3,6 @@ CREATE TABLE overlays_topics(
     topic_name TEXT NOT NULL UNIQUE,
     topic_url TEXT NOT NULL,
     -- note TEXT,
-    date_added TIMESTAMP DEFAULT now() NOT NULL
-    user_id INTEGER REFERENCES overlays_users(id) NOT NULL ON DELETE CASCADE
+    date_added TIMESTAMP DEFAULT now() NOT NULL,
+    user_id INTEGER REFERENCES overlays_users(id) NOT NULL 
 );
