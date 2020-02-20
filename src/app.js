@@ -27,12 +27,13 @@ res.status(200).send("Hello World.")
 })
 
 app.use(function erroHandler(error, req,res,next){
- let response
+ let response;
+ console.error(error)
  if( NODE_ENV === 'production'){
      response ={error:{message:'server error'}}
  }
  else {
-     console.error(error)
+     
      response = {message: error.message, error}
  }   
 })

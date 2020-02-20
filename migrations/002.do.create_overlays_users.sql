@@ -3,7 +3,6 @@ CREATE TABLE overlays_users(
 user_name TEXT NOT NULL UNIQUE,
 user_password TEXT NOT NULL,
 date_created TIMESTAMP DEFAULT now() NOT NULL
-
 );
 
 CREATE TABLE user_options(
