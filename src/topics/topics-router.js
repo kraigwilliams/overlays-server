@@ -75,7 +75,8 @@ topicsRouter
   })
 .delete((req,res,next))=>{
   const knexInstance = req.app.get('db')
-  .then(()=>TopicsService.deleteTopic(knexInstance,req.params.topicId))
-
+  TopicsService.deleteTopic(knexInstance,req.params.topicId)
+  .then(()=>res.status(204).end())
+.catch(next)
 }
   module.exports = topicsRouter
