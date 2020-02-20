@@ -16,9 +16,9 @@ getById(knex,id){
     return knex.from('overlays_topics').select('*').where('id', id)
 },
 
-deleteTopic(knex,id){
+deleteTopic(knex,topicId){
     return knex('overlays_topics')
-    .where({id})
+    .where({topicId})
     .delete()
 },
 updateTopic(knex,id, newTopicFields){

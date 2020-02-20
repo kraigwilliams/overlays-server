@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const TopicsService = require('../topics-service')
+const TopicsService = require('./topics-service')
 const xss= require('xss')
 
 const {requireAuth} = require('../middleware/jwt-auth')
@@ -19,6 +19,8 @@ const serializeTopic = topic => ({
 
 topicsRouter
 .use(requireAuth)
+
+
 .route('/')
 .get((req,res,next)=>{
   const knexInstance=  req.app.get('db')  
@@ -57,7 +59,7 @@ topicsRouter
       .catch(next)
   })
   topicsRouter
-  .route('/:topic_id')
+  .route('/:topicId')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db')
     TopicsService.getById(knexInstance, req.params.topic_id)
@@ -71,5 +73,9 @@ topicsRouter
       })
       .catch(next)
   })
+.delete((req,res,next))=>{
+  const knexInstance = req.app.get('db')
+  .then(()=>TopicsService.deleteTopic(knexInstance,req.params.topicId))
 
+}
   module.exports = topicsRouter
