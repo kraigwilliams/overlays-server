@@ -74,12 +74,13 @@ topicsRouter
       })
       .catch(next)
   })
-// .delete((req,res,next))=>{
-//   const knexInstance = req.app.get('db')
-//   TopicsService.deleteTopic(knexInstance,req.params.topic_id)
-//   .then(()=>{
-//     res.status(204).end()
-// })
-// .catch(next)
+.delete((req,res,next)=>{
+  const knexInstance = req.app.get('db')
+  TopicsService.deleteTopic(knexInstance,req.params.topic_id)
+  .then(()=>{
+    res.status(204).end()
+})
 
+.catch(next)
+})
   module.exports = topicsRouter
