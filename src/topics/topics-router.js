@@ -59,7 +59,7 @@ topicsRouter
       .catch(next)
   })
 
-  TopicsRouter
+  topicsRouter
   .route('/:topic_id')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db')
