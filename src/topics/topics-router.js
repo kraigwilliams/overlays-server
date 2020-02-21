@@ -58,8 +58,9 @@ topicsRouter
       })
       .catch(next)
   })
-  topicsRouter
-  .route('/:topicId')
+
+  TopicsRouter
+  .route('/:topic_id')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db')
     TopicsService.getById(knexInstance, req.params.topic_id)
@@ -73,10 +74,12 @@ topicsRouter
       })
       .catch(next)
   })
-.delete((req,res,next))=>{
-  const knexInstance = req.app.get('db')
-  TopicsService.deleteTopic(knexInstance,req.params.topicId)
-  .then(()=>res.status(204).end())
-.catch(next)
-}
+// .delete((req,res,next))=>{
+//   const knexInstance = req.app.get('db')
+//   TopicsService.deleteTopic(knexInstance,req.params.topic_id)
+//   .then(()=>{
+//     res.status(204).end()
+// })
+// .catch(next)
+
   module.exports = topicsRouter
