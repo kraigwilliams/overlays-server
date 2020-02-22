@@ -62,6 +62,7 @@ topicsRouter
   topicsRouter
   .route('/:topic_id')
   .get((req, res, next) => {
+    console.log('got here at least')
     const knexInstance = req.app.get('db')
     TopicsService.getById(knexInstance, req.params.topic_id)
       .then(topic => {
