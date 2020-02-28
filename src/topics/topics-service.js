@@ -25,7 +25,14 @@ updateTopic(knex,id, newTopicFields){
     return knex('overlays_topics')
     .where({id})
     .update(newTopicFields)
-}
+},
+// getAllNotes(knex,topicId){
+//     return knex.from('user_notes').select('*')
+//    // .where('user_id',user_id)
+//     .where('from_topic',topicId)
+//     .join('overlays_topics','user_notes.from_topic','=','overlays_topics.id')
+    
+// }
 }
 
 module.exports= TopicsService;

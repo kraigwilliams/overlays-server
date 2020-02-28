@@ -27,12 +27,10 @@ notesRouter
 
 .get((req,res,next)=>{
   const knexInstance=  req.app.get('db')  
-  //const user=req.user.id
-  //console.log("user",user)
-  console.log("this is req",req)
+  
   NotesService.getAllNotes(knexInstance,Number(req.user.id),Number(req.from_topic))
     .then(notes=>{
-        console.log("this is req",req)
+
         res.json(notes.map(serializeNote))
     })
     .catch(next)
@@ -59,17 +57,38 @@ notesRouter
         res
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${note.id}`))
-          //.location(`/topics/${topic.id}`)
+          
           .json(serializeNote(note))
       })
       .catch(next)
   })
+
+notesRouter
+.route('/bytopic/:topicId')
+.get((req, res, next) => {
+  
+  const knexInstance = req.app.get('db')
+  NotesService.getAllNotes(knexInstance, req.params.topicId)
+    .then(note=> {
+    
+      if (!note) {
+        return res.status(404).json({
+          error: { message: `There are no notes.` }
+        })
+      }
+      
+
+      res.json(note.map(serializeNote))
+    })
+    .catch(next)
+})
+
   notesRouter
-  .route('/:topicId')
+  .route('/:noteId')
   .get((req, res, next) => {
-      console.log("this is req.params",req.params)
+  
     const knexInstance = req.app.get('db')
-    NotesService.getAllNotes(knexInstance, req.params.topicId)
+    NotesService.getById(knexInstance, req.params.noteId)
       .then(note=> {
       
         if (!note) {
@@ -77,11 +96,19 @@ notesRouter
             error: { message: `There are no notes.` }
           })
         }
-        console.log("this is note",note)
+        
 
-        res.json(note.map(serializeNote))
+        res.json(serializeNote(note))
       })
       .catch(next)
   })
-
+  .delete((req,res,next)=>{
+    const knexInstance = req.app.get('db')
+    NotesService.deleteNote(knexInstance,req.params.noteId)
+    .then(()=>{
+      res.status(204).end()
+    })
+    .catch(next)
+  }
+  )
   module.exports = notesRouter
