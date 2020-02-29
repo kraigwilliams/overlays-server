@@ -5,5 +5,5 @@ PORT: process.env.PORT || 8000,
 NODE_ENV: process.env.NODE_ENV || 'development',
 DB_URL:process.env.DB_URL || "https://kraig-overlays-server.herokuapp.com/",
 JWT_SECRET: process.env.JWT_SECRET || "kraighasalittlesecret",
-JWT_EXPIRY: process.env.JWT_EXPIRY || '3h'
+JWT_EXPIRY: process.env.JWT_EXPIRY || '3d'
 }
