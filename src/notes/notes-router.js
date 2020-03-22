@@ -64,7 +64,7 @@ notesRouter
   })
 
 notesRouter
-.route('/bytopic/:topicId')
+.route('/bytopic/:topicName')
 .get((req, res, next) => {
   
   const knexInstance = req.app.get('db')
