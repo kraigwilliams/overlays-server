@@ -1,6 +1,12 @@
 const NotesService = {
   getAllNotes(knex, topicId) {
     return (
+
+      // knex('overlays_topics')
+      // .join('user_notes',
+      // "overlays_topics.topic_name"
+      // )
+
       knex
         .from("user_notes")
         .select('user_notes.*')
