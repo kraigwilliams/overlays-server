@@ -11,7 +11,7 @@ const NotesService = {
         .from("user_notes")
         .select('user_notes.*')
         // .where('user_id',user_id)
-        .where("from_topic", topicId)
+        .where("topic_name", topicName)
         .join(
           "overlays_topics",
           "user_notes.topic_name",
