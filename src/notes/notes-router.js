@@ -27,8 +27,8 @@ notesRouter
 
 .get((req,res,next)=>{
   const knexInstance=  req.app.get('db')  
-  
-  NotesService.getAllNotes(knexInstance,Number(req.user.id),Number(req.from_topic))
+  console.log("final",req.topicName)
+  NotesService.getAllNotes(knexInstance,Number(req.user.id),Number(req.topicName))
     .then(notes=>{
 
         res.json(notes.map(serializeNote))
@@ -36,9 +36,9 @@ notesRouter
     .catch(next)
 })
 .post(jsonParser, (req, res, next) => {
-    const { note_title, note_contents, from_topic, topic_name} = req.body
+    const { note_title, note_contents, topic_name} = req.body
     
-    const newNote = { note_title,note_contents,from_topic, topic_name}
+    const newNote = { note_title,note_contents,topic_name}
 
     for (const [key, value] of Object.entries(newNote)) {
            if (value == null) {
