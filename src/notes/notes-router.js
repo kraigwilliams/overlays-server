@@ -36,9 +36,9 @@ notesRouter
     .catch(next)
 })
 .post(jsonParser, (req, res, next) => {
-    const { note_title, note_contents, from_topic} = req.body
+    const { note_title, note_contents, from_topic, topic_name} = req.body
     
-    const newNote = { note_title,note_contents,from_topic}
+    const newNote = { note_title,note_contents,from_topic, topic_name}
 
     for (const [key, value] of Object.entries(newNote)) {
            if (value == null) {
@@ -68,6 +68,7 @@ notesRouter
 .get((req, res, next) => {
   
   const knexInstance = req.app.get('db')
+  
   NotesService.getAllNotes(knexInstance, req.params.topicId)
     .then(note=> {
     

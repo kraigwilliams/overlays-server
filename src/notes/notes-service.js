@@ -8,9 +8,9 @@ const NotesService = {
         .where("from_topic", topicId)
         .join(
           "overlays_topics",
-          "user_notes.from_topic",
+          "user_notes.topic_name",
           "=",
-          "overlays_topics.id"
+          "overlays_topics.topic_name"
         )
     );
   },
