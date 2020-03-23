@@ -1,5 +1,5 @@
 const NotesService = {
-  getAllNotes(knex, topicId) {
+  getAllNotes(knex, topicName) {
     return (
 
       // knex('overlays_topics')
