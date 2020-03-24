@@ -69,7 +69,7 @@ notesRouter
   
   const knexInstance = req.app.get('db')
   
-  NotesService.getAllNotes(knexInstance, req.topicName)
+  NotesService.getAllNotes(knexInstance, req.params.topicName)
     .then(note=> {
     
       if (!note) {
