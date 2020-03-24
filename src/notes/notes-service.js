@@ -12,12 +12,12 @@ const NotesService = {
         .select('user_notes.*')
         // .where('user_id',user_id)
         .where("topic_name", topicName)
-        .join(
-          "overlays_topics",
-          "user_notes.topic_name",
-          "=",
-          "overlays_topics.topic_name"
-        )
+        // .join(
+        //   "overlays_topics",
+        //   "user_notes.topic_name",
+        //   "=",
+        //   "overlays_topics.topic_name"
+        // )
     );
   },
   insertNote(knex, newNote) {
