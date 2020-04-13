@@ -39,7 +39,7 @@ notesRouter
     const { note_title, note_contents, topic_name} = req.body
     
     const newNote = { note_title,note_contents,topic_name}
-
+console.log(newNote,"new Note")
     for (const [key, value] of Object.entries(newNote)) {
            if (value == null) {
              return res.status(400).json({
