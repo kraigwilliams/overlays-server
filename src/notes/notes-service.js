@@ -10,6 +10,7 @@ const NotesService = {
       knex
         .from("user_notes")
         .select('user_notes.*')
+        .join('overlays_topics','user_notes.from_topic','overlays_topics.id')
         // .where('user_id',user_id)
         .where("topic_name", topicName)
         // .join(
