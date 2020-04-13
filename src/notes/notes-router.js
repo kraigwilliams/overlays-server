@@ -77,7 +77,7 @@ notesRouter
           error: { message: `There are no notes.` }
         })
       }
-      
+      console.log("note",note)
 
       res.json(note.map(serializeNote))
     })
