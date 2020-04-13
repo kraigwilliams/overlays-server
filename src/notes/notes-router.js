@@ -14,7 +14,7 @@ const serializeNote = note => ({
   note_contents: xss(note.note_contents),             
  // date_added: topic.date_added,
  note_owner:note.note_owner,
- topic_name:xss(note.topic_name)
+ from_topic:xss(note.from_topic)
 })
 
 
