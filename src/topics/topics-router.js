@@ -30,7 +30,8 @@ topicsRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    const { topic_name, topic_url } = req.body;
+    let { topic_name, topic_url } = req.body;
+    topic_name=topic_name.replace("-"," ")
     const newTopic = { topic_name, topic_url };
 
     for (const [key, value] of Object.entries(newTopic)) {
