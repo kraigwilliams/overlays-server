@@ -66,7 +66,8 @@ console.log(newNote,"new Note")
 notesRouter
 .route('/bytopic/:topicName')
 .get((req, res, next) => {
-  const clean = toString(req.params.TopicName).replace("-", " ");
+  let clean = toString(req.params.TopicName)
+  clean= clean.replace("-", " ");
   console.log(clean,"clean")
   const knexInstance = req.app.get('db')
   
