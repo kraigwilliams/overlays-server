@@ -10,9 +10,9 @@ const jsonParser = express.json()
 const serializeNote = note => ({
   id: note.id,
   note_title:xss(note.note_title),
-//from_topic:note.from_topic,
+
   note_contents: xss(note.note_contents),             
- // date_added: topic.date_added,
+
  note_owner:note.note_owner,
  from_topic:xss(note.from_topic)
 })
@@ -20,7 +20,7 @@ const serializeNote = note => ({
 
 notesRouter
 .use(requireAuth)
-//.use(jsonParser)
+
 
  .route('/')
 
@@ -66,7 +66,7 @@ console.log(newNote,"new Note")
 notesRouter
 .route('/bytopic/:topicName')
 .get((req, res, next) => {
-  
+  const clean = toString(req.params.TopicName).replace("-", " ");
   const knexInstance = req.app.get('db')
   
   NotesService.getAllNotes(knexInstance, req.params.topicName)

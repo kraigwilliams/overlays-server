@@ -1,6 +1,6 @@
 # Overlays Server
 
-This is the backend for the Overlays App.
+This is the backend api for the Overlays App.
 There are three parts to the api.
 The topics service, the notes service and the user authentication service.
 

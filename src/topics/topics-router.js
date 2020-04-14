@@ -11,8 +11,8 @@ const serializeTopic = topic => ({
   id: Number(topic.id),
   topic_name: xss(topic.topic_name),
   topic_url: xss(topic.topic_url),
-  note: xss(topic.note),
-  date_added: topic.date_added
+  
+  
 });
 
 topicsRouter

@@ -35,7 +35,7 @@ describe("Topics Endpoint", function () {
         helpers.seedTopicTable(db, testUsers, testTopics)
       );
 
-      it("responds with 200 and all of the topics", () => {
+      it(" it responds with 200 and all of the topics", () => {
         const expectedTopics = testTopics.map((topic) =>
           helpers.makeExpectedTopic(testUsers, topic)
         );
@@ -48,7 +48,7 @@ describe("Topics Endpoint", function () {
   });
 
   describe(`GET /api/topics/:topic_id`, () => {
-    context(`Given no topics`, () => {
+    context(`Given a faken topic`, () => {
       beforeEach(() => helpers.seedUsers(db, testUsers));
       it(`responds with 404`, () => {
         const fakeTopic = 123456;
@@ -60,5 +60,5 @@ describe("Topics Endpoint", function () {
           });
       });
     });
-  });
+  });                                  
 });

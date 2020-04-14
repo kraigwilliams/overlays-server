@@ -13,8 +13,8 @@ function makeUsersArray() {
     },
     {
       id: 2,
-      username: "kwill",
-       password: "1@Thinkful",
+      user_name: "kwill",
+       user_password: "1@Thinkful",
     },
   ];
 }
@@ -30,10 +30,10 @@ function makeTopicsArray() {
     },
     {
       id: 2,
-      topic_title: "Google",
+      topic_name: "Google",
       topic_url: "https://google.com",
       
-      topic_owner: 1,
+      user_id: 1
     },
   ];
 }
@@ -63,7 +63,7 @@ function makeExpectedTopic(users, topic) {
   
   return {
     id: topic.id,
-    user_id: topic.user_id,
+    
     topic_url: topic.topic_url,
     topic_name: topic.topic_name
   };
@@ -93,7 +93,7 @@ function makeNotesFixtures() {
 
 function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
   const token = jwt.sign({ user_id: user.id }, secret, {
-    subject: user.username,
+    subject: user.user_name,
     algorithm: "HS256",
     expiresIn: config.JWT_EXPIRY,
   });
@@ -109,12 +109,7 @@ function cleanTables(db) {
   return db.transaction((trx) =>
     trx
       .raw(
-        `user_notes,
-overlays_topics,
-        
-    overlays_users,
-    
-      `)
+        `TRUNCATE user_notes, overlays_topics,overlays_users`)
       .then(() =>
         Promise.all([
           trx.raw(`ALTER SEQUENCE user_notes_id_seq minvalue 0 START WITH 1`),
@@ -135,10 +130,10 @@ overlays_topics,
  * @returns {Promise} - when users table seeded
  */
 function seedUsers(db, users) {
+  console.log(users, "users")
   const preppedUsers = users.map((user) => ({
-    ...user,
-    password: bcrypt.hashSync(user.password, 1),
-  }));
+    ...user, user_password: bcrypt.hashSync(user.user_password, 1),
+  }) );
   return db.transaction(async (trx) => {
     await trx.into("overlays_users").insert(preppedUsers);
 
@@ -154,7 +149,7 @@ function seedTopicTable(db, users, topics) {
     await seedUsers(trx, users);
     await trx.into("overlays_topics").insert(topics);
     // update the auto sequence to match the forced id values
-    await trx.raw(`SELECT setval('overlays_topic_id_seq', ?)`, [
+    await trx.raw(`SELECT setval('overlays_topics_id_seq', ?)`, [
       topics[topics.length - 1].id,
     ]);
     // only insert comments if there are some, also update the sequence counter
@@ -186,7 +181,7 @@ module.exports = {
   makeTopicsFixtures,
   makeNotesFixtures,
   makeExpectedNote,
-  
+  makeExpectedTopic,
  makeAuthHeader,
   cleanTables,
   seedUsers,
