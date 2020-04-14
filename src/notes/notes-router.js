@@ -68,7 +68,7 @@ notesRouter
 .get((req, res, next) => {
   let clean = toString(req.params.TopicName)
   clean= clean.replace("-", " ");
-  console.log(clean,"clean")
+  console.log(clean,"clean",req.params.topicName)
   const knexInstance = req.app.get('db')
   
   NotesService.getAllNotes(knexInstance, clean)
