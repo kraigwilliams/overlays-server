@@ -7,7 +7,7 @@ const {requireAuth} = require('../middleware/jwt-auth')
 const notesRouter = express.Router()
 const jsonParser = express.json()
 
-const serializeNote = note => ({
+const serializeNote = note =>({
   id: note.id,
   note_title:xss(note.note_title),
 

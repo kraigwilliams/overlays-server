@@ -47,7 +47,7 @@ topicsRouter
       .then(topic => {
         res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${article.id}`))
+          .location(path.posix.join(req.originalUrl, `/${topic.id}`))
 
           .json(serializeTopic(topic));
       })

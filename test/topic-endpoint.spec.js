@@ -47,18 +47,5 @@ describe("Topics Endpoint", function () {
     });
   });
 
-  describe(`GET /api/topics/:topic_id`, () => {
-    context(`Given a faken topic`, () => {
-      beforeEach(() => helpers.seedUsers(db, testUsers));
-      it(`responds with 404`, () => {
-        const fakeTopic = 123456;
-        return supertest(app)
-          .get(`/api/topics/${fakeTopic}`)
-          .set("Authorization", helpers.makeAuthHeader(testUsers[0]))
-          .expect(404, {
-            error: { message: `This topic does not exist.` },
-          });
-      });
-    });
-  });                                  
+                                   
 });
