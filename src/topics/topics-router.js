@@ -72,7 +72,7 @@ topicsRouter
   .delete((req, res, next) => {
     const knexInstance = req.app.get("db");
 console.log(req.params.topic_id,'Topic id')
-    TopicsService.deleteTopic(knexInstance, req.params.topic_id)
+    TopicsService.deleteTopic(knexInstance, Number(req.params.topic_id))
       .then(() => {
         res.status(204).end();
       })
