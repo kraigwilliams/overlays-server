@@ -1,4 +1,4 @@
-# Overlays Server
+                                                               # Overlays Server
 
 This is the backend api for the Overlays App.
 There are three parts to the api.
@@ -24,15 +24,15 @@ This inserts a new topic posted by a user into the database. It executes the fun
 ## User Router
 
 
-## User Service
+## User Api Service
 This handles the CRUD operations for requests to the api that connect to the database table that deals 
 registering new users to the overlays site.
 
 
-## Auth Service
+## Auth Api Service
 This handles authenticating users to overlays using JSON web tokens.
 
-##Notes API Service
+## Notes API Service
 This executes functions based on the calls made to the Notes Router at /api/notes
 
 #### getAllNotes
