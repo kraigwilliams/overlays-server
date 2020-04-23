@@ -22,6 +22,9 @@ This inserts a new topic posted by a user into the database. It executes the fun
 
 
 ## User Router
+This route live within the api at /api/user and is responsible for the CRUD operations for adding a new user to the database.
+
+## User Service
 
 
 ## User Api Service
@@ -44,11 +47,11 @@ This handles authenticating users to overlays using JSON web tokens.
 ## Notes API Service
 This executes functions based on the calls made to the Notes Router at /api/notes
 
-#### getAllNotes
+##### getAllNotes
 This functions gets all the notes from a databases that are attached to the specified topics
 
-#### insertNote
+##### insertNote
 This function posts a new note attached to a topic into the database.
 
-#### deleteNote
+##### deleteNote
 This functions deletes a specific note from a topic from the database
