@@ -1,13 +1,14 @@
 # Overlays Server
 
 This is the backend api for the Overlays App.
-There are three parts to the api.
-The topics service, the notes service and the user authentication service.
+There are four parts to the api.
+The user service, topics service,notes service and authentication service.
 
 ## Topics Router
 This router lives at /api/topics.
 It handles the GET,POST,DELETE endpoints for topics in the database.
-The endpoints are /api/topics and api/topics/:topicId
+The endpoints are /api/topics and api/topics/:topicId.
+/api/topic executed the getAllTopics function from the Topics Service
 
 
 
@@ -15,21 +16,19 @@ The endpoints are /api/topics and api/topics/:topicId
 This handles the CRUD operations for the database table where an user's submitted topics.
 Get Topics gets the topics in the dabase that are linked to the user's id
 
-#### GetById 
-Gets a topic by its specifc id.
-#### InsertTopic 
+#### getById 
+Gets a topic by its specifc id. 
+#### insertTopic 
 This inserts a new topic posted by a user into the database. It executes the function insertTopic from the TopicsApiService.
 
 
 ## User Router
 This route live within the api at /api/user and is responsible for the CRUD operations for adding a new user to the database.
 
-## User Service
 
 
 ## User Api Service
-This handles the CRUD operations for requests to the api that connect to the database table that deals 
-registering new users to the overlays site.
+This handles the CRUD operations for requests to the api that connect to the database table that deals with registering new users to the overlays site.
 
 
 ## Auth Router
