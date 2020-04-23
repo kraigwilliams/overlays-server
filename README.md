@@ -42,6 +42,9 @@ This route handles refreshing a user's authentication to keep them logged in bas
 ## Auth Api Service
 This handles authenticating users to overlays using JSON web tokens.
 
+## Notes Router
+this route live as /api/notes. It handles the CRUD operations for notes in the database.
+/bytopic/:topicName
 
 ## Notes API Service
 This executes functions based on the calls made to the Notes Router at /api/notes
