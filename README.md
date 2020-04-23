@@ -40,3 +40,6 @@ This functions gets all the notes from a databases that are attached to the spec
 
 #### insertNote
 This function posts a new note attached to a topic into the database.
+
+#### deleteNote
+This functions deletes a specific note from a topic from the database
