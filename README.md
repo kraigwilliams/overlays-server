@@ -1,4 +1,4 @@
-                                                               # Overlays Server
+# Overlays Server
 
 This is the backend api for the Overlays App.
 There are three parts to the api.
