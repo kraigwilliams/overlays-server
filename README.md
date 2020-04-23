@@ -29,8 +29,17 @@ This handles the CRUD operations for requests to the api that connect to the dat
 registering new users to the overlays site.
 
 
+## Auth Router
+#### /api/login
+This route handles authenticating a user logging back into their existing account.
+
+#### /api/refresh
+This route handles refreshing a user's authentication to keep them logged in based on their activity on the client side.
+
+
 ## Auth Api Service
 This handles authenticating users to overlays using JSON web tokens.
+
 
 ## Notes API Service
 This executes functions based on the calls made to the Notes Router at /api/notes
