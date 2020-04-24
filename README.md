@@ -1,6 +1,9 @@
 # Overlays Server
 
-This is the backend api for the Overlays App. It can be accessed here [Overlays Api]https://kraig-overlays-server.herokuapp.com/
+This is the backend api for the Overlays App. It can be accessed here 
+[Overlays Api](https://kraig-overlays-server.herokuapp.com)
+[Overlays Live](https://overlays.now.sh)
+[Overlays Front End repo](https://github.com/kraigwilliams/overlays-app)
 There are four parts to the api.
 The user service, topics service,notes service and authentication service.
 
