@@ -87,8 +87,9 @@ function makeTopicsFixtures() {
 function makeNotesFixtures() {
   const testUsers = makeUsersArray();
   const testNotes = makeNotesArray(testUsers);
+  const testTopics = makeTopicsArray(testUsers);
 
-  return { testUsers, testNotes };
+  return { testUsers, testNotes,testTopics };
 }
 
 function makeAuthHeader(user, secret = process.env.JWT_SECRET) {

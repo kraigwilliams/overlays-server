@@ -27,7 +27,7 @@ notesRouter
 
 .get((req,res,next)=>{
   const knexInstance=  req.app.get('db')  
-  console.log("final",req.topicName)
+  
   NotesService.getAllNotes(knexInstance,Number(req.user.id),Number(req.topicName))
     .then(notes=>{
 
@@ -39,7 +39,7 @@ notesRouter
     const { note_title, note_contents, from_topic} = req.body
     
     const newNote = { note_title,note_contents,from_topic}
-console.log(newNote,"new Note")
+
     for (const [key, value] of Object.entries(newNote)) {
            if (value == null) {
              return res.status(400).json({
@@ -66,9 +66,9 @@ console.log(newNote,"new Note")
 notesRouter
 .route('/bytopic/:topicName')
 .get((req, res, next) => {
-  //let clean = String(req.params.TopicName)
+  
   let clean= req.params.topicName.replace("-", " ");
-  console.log(clean,"clean",req.params.topicName)
+ 
   const knexInstance = req.app.get('db')
   
   NotesService.getAllNotes(knexInstance, clean)
@@ -88,23 +88,23 @@ notesRouter
 
   notesRouter
   .route('/:noteId')
-  .get((req, res, next) => {
+  // .get((req, res, next) => {
   
-    const knexInstance = req.app.get('db')
-    NotesService.getById(knexInstance, req.params.noteId)
-      .then(note=> {
+  //   const knexInstance = req.app.get('db')
+  //   NotesService.getById(knexInstance, req.params.noteId)
+  //     .then(note=> {
       
-        if (!note) {
-          return res.status(404).json({
-            error: { message: `There are no notes.` }
-          })
-        }
+  //       if (!note) {
+  //         return res.status(404).json({
+  //           error: { message: `There are no notes.` }
+  //         })
+  //       }
         
 
-        res.json(serializeNote(note))
-      })
-      .catch(next)
-  })
+  //       res.json(serializeNote(note))
+  //     })
+  //     .catch(next)
+  // })
   .delete((req,res,next)=>{
     const knexInstance = req.app.get('db')
     NotesService.deleteNote(knexInstance,req.params.noteId)
