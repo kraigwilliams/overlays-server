@@ -2,8 +2,9 @@ const NotesService = {
 
 /**
  * Gets all the notes from the database based on the specified topic name
- * @param {database connection} knex 
- * @param {string} topicName 
+ * @param {objec} knex database connection
+ * @param {string} topicName name of the topic to use to get all associated notes
+ * @returns {array} 
  */
 
   getAllNotes(knex, topicName) {
@@ -25,7 +26,9 @@ const NotesService = {
    * 
    * @param {database connection} knex 
    * @param {object} newNote 
+   * @returns {array}
    */
+
   insertNote(knex, newNote) {
     return (
       knex
@@ -41,7 +44,11 @@ const NotesService = {
       .select("*")
       .where("id", id);
   },
-
+/**
+ * 
+ * @param {object} knex database connection
+ * @param {integer} id id of the note to be deleted from the database
+ */
   deleteNote(knex, id) {
     return knex("user_notes")
       .where("id", id)

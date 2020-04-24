@@ -1,5 +1,10 @@
 const TopicsService={
-
+/**
+ * 
+ * @param {object} knex database connection
+ * @param {integer} id user id used to pull all topics associated to that user
+ * @returns {array}
+ */
     getAllTopics(knex,id){
     return knex.from('overlays_topics').select('*')
     .where('user_id',id)
